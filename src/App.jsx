@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0f0f0f", color: "#fff", padding: "32px", fontFamily: "sans-serif" }}>
-      <h1 style={{ textAlign: "center", fontSize: "2rem", marginBottom: "8px" }}> AI Code Reviewer</h1>
+      <h1 style={{ textAlign: "center", fontSize: "2rem", marginBottom: "8px" }}>AI Code Reviewer</h1>
       <p style={{ textAlign: "center", color: "#888", marginBottom: "32px" }}>Paste your code and get instant AI feedback</p>
 
       <div style={{ maxWidth: "900px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
@@ -55,7 +55,7 @@ export default function App() {
             disabled={loading}
             style={{ background: loading ? "#333" : "#6366f1", color: "#fff", border: "none", padding: "12px", borderRadius: "8px", fontSize: "15px", cursor: loading ? "not-allowed" : "pointer", fontWeight: "600" }}
           >
-            {loading ? "Reviewing..." : "Review Code "}
+            {loading ? "Reviewing..." : "Review Code"}
           </button>
         </div>
 
@@ -69,25 +69,22 @@ export default function App() {
               {copied ? "Copied!" : "Copy"}
             </button>
           )}
-          import ReactMarkdown from "react-markdown";
-
-// replace the pre tag with:
-{review ? (
-  <ReactMarkdown
-    components={{
-      h3: ({node, ...props}) => <h3 style={{color: "#a78bfa", marginTop: "16px", marginBottom: "6px"}} {...props} />,
-      p: ({node, ...props}) => <p style={{margin: "6px 0", lineHeight: "1.6"}} {...props} />,
-      li: ({node, ...props}) => <li style={{margin: "4px 0", lineHeight: "1.6"}} {...props} />,
-      code: ({node, ...props}) => <code style={{background: "#2a2a2a", padding: "2px 6px", borderRadius: "4px", fontSize: "12px", color: "#f472b6"}} {...props} />,
-      pre: ({node, ...props}) => <pre style={{background: "#2a2a2a", padding: "12px", borderRadius: "8px", overflowX: "auto", fontSize: "12px"}} {...props} />,
-      strong: ({node, ...props}) => <strong style={{color: "#fff"}} {...props} />,
-    }}
-  >
-    {review}
-  </ReactMarkdown>
-) : (
-  <span style={{color: "#555"}}>Review will appear here...</span>
-)}
+          {review ? (
+            <ReactMarkdown
+              components={{
+                h3: ({node, ...props}) => <h3 style={{color: "#a78bfa", marginTop: "16px", marginBottom: "6px"}} {...props} />,
+                p: ({node, ...props}) => <p style={{margin: "6px 0", lineHeight: "1.6"}} {...props} />,
+                li: ({node, ...props}) => <li style={{margin: "4px 0", lineHeight: "1.6"}} {...props} />,
+                code: ({node, ...props}) => <code style={{background: "#2a2a2a", padding: "2px 6px", borderRadius: "4px", fontSize: "12px", color: "#f472b6"}} {...props} />,
+                pre: ({node, ...props}) => <pre style={{background: "#2a2a2a", padding: "12px", borderRadius: "8px", overflowX: "auto", fontSize: "12px"}} {...props} />,
+                strong: ({node, ...props}) => <strong style={{color: "#fff"}} {...props} />,
+              }}
+            >
+              {review}
+            </ReactMarkdown>
+          ) : (
+            <span style={{color: "#555"}}>Review will appear here...</span>
+          )}
         </div>
       </div>
     </div>
