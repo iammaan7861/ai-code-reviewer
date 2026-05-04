@@ -1,11 +1,11 @@
-import { GROQ_API_KEY } from "../config";
-
 export async function callGrok(prompt) {
+  const key = import.meta.env.VITE_GROQ_API_KEY;
+  
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${GROQ_API_KEY}`,
+      "Authorization": `Bearer ${key}`,
     },
     body: JSON.stringify({
       model: "llama-3.3-70b-versatile",
