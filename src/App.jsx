@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { callGrok } from "./api/grok";
 
 const LANGUAGES = ["C++", "Python", "JavaScript", "Java", "TypeScript", "Go"];
@@ -68,9 +69,25 @@ export default function App() {
               {copied ? "Copied!" : "Copy"}
             </button>
           )}
-          <pre style={{ margin: 0, whiteSpace: "pre-wrap", fontFamily: "monospace", fontSize: "13px", color: review ? "#e2e2e2" : "#555" }}>
-            {review || "Review will appear here..."}
-          </pre>
+          import ReactMarkdown from "react-markdown";
+
+// replace the pre tag with:
+{review ? (
+  <ReactMarkdown
+    components={{
+      h3: ({node, ...props}) => <h3 style={{color: "#a78bfa", marginTop: "16px", marginBottom: "6px"}} {...props} />,
+      p: ({node, ...props}) => <p style={{margin: "6px 0", lineHeight: "1.6"}} {...props} />,
+      li: ({node, ...props}) => <li style={{margin: "4px 0", lineHeight: "1.6"}} {...props} />,
+      code: ({node, ...props}) => <code style={{background: "#2a2a2a", padding: "2px 6px", borderRadius: "4px", fontSize: "12px", color: "#f472b6"}} {...props} />,
+      pre: ({node, ...props}) => <pre style={{background: "#2a2a2a", padding: "12px", borderRadius: "8px", overflowX: "auto", fontSize: "12px"}} {...props} />,
+      strong: ({node, ...props}) => <strong style={{color: "#fff"}} {...props} />,
+    }}
+  >
+    {review}
+  </ReactMarkdown>
+) : (
+  <span style={{color: "#555"}}>Review will appear here...</span>
+)}
         </div>
       </div>
     </div>
